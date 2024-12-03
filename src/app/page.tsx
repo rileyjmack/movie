@@ -11,13 +11,23 @@ export default async function Home() {
   // const person = await data.json();
   const movies = await movieData.json();
   const cast = movies.cast;
-  cast.sort((a, b) => Math.floor(b.popularity) - Math.floor(a.popularity));
+  cast.sort((a, b) => b.vote_count - a.vote_count);
+  // className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]"
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+    <div>
       <div>
         {cast.length ? (
-          cast.map((movie) => <li key={movie.id}>{movie.original_title}</li>)
+          cast
+            .filter((movie) => movie.title)
+            .filter((movie) => movie.vote_count > 1000)
+            .map((movie) => (
+              <li key={movie.id}>
+                TITLE:{movie.title}
+                VOTE COUNT:{movie.vote_count}
+                ORDER:{movie.order}
+              </li>
+            ))
         ) : (
           <p>...loading</p>
         )}
