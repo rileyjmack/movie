@@ -1,52 +1,53 @@
-import React, { useState } from "react";
-import Autosuggest from "react-autosuggest";
-const API_KEY = process.env.API_KEY;
+"use client";
+import { useRouter } from "next/navigation";
+import { useState, ChangeEvent } from "react";
 
-const SearchBar = () => {
-  const [value, setValue] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
+interface iDefault {
+  defaultValue?: string | null;
+}
 
-  const getSuggestions = async (value) => {
-    const response = await fetch(
-      `https://api.themoviedb.org/3/search/person?q=${value}&api_key=${API_KEY}`
-    );
-    const data = await response.json();
-    return data.suggestions;
+export const SearchInput = ({ defaultValue }: iDefault) => {
+  // initiate the router from next/navigation
+
+  const router = useRouter();
+
+  // We need to grab the current search parameters and use it as default value for the search input
+
+  const [inputValue, setValue] = useState(defaultValue);
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const inputValue = event.target.value;
+
+    setValue(inputValue);
   };
 
-  const onSuggestionsFetchRequested = ({ value }) => {
-    getSuggestions(value).then((newSuggestions) => {
-      setSuggestions(newSuggestions);
-    });
+  // If the user clicks enter on the keyboard, the input value should be submitted for search
+
+  // We are now routing the search results to another page but still on the same page
+
+  const handleSearch = () => {
+    if (inputValue) return router.push(`/?q=${inputValue}`);
+
+    if (!inputValue) return router.push("/");
   };
 
-  const onSuggestionsClearRequested = () => {
-    setSuggestions([]);
-  };
-
-  const onSuggestionSelected = (event, { suggestion }) => {
-    setValue(suggestion);
-  };
-
-  const renderSuggestion = (suggestion) => <div>{suggestion}</div>;
-
-  const inputProps = {
-    value,
-    onChange: (event, { newValue }) => setValue(newValue),
-    placeholder: "Search...",
+  const handleKeyPress = (event: { key }) => {
+    if (event.key === "Enter") return handleSearch();
   };
 
   return (
-    <Autosuggest
-      suggestions={suggestions}
-      onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-      onSuggestionsClearRequested={onSuggestionsClearRequested}
-      getSuggestionValue={(suggestion) => suggestion}
-      renderSuggestion={renderSuggestion}
-      inputProps={inputProps}
-      onSuggestionSelected={onSuggestionSelected}
-    />
+    <div className="search__input border-[2px] border-solid border-slate-500 flex flex-row items-center gap-5 p-1 rounded-[15px]">
+      <label htmlFor="inputId">searchIcon</label>
+
+      <input
+        type="text"
+        id="inputId"
+        placeholder="Enter your keywords"
+        value={inputValue ?? ""}
+        onChange={handleChange}
+        onKeyDown={handleKeyPress}
+        className="bg-[transparent] outline-none border-none w-full py-3 pl-2 pr-3"
+      />
+    </div>
   );
 };
-
-export default SearchBar;
