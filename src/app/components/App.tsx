@@ -1,3 +1,5 @@
+"use client";
+import React, { useState } from "react";
 import { SearchInput } from "./searchbar";
 
 const profiles = [
@@ -15,9 +17,24 @@ const profiles = [
 ];
 
 const App = () => {
+  const [results, setResults] = useState<{ id: string; name: string }[]>();
+
+  type changeHandler = React.ChangeEventHandler<HTMLInputElement>;
+  const handleChange: changeHandler = (e) => {
+    const { target } = e;
+    if (!target.value.trim()) return setResults([]);
+    const filteredValue = profiles.filter((profile) =>
+      profile.name.toLowerCase().startsWith(target.value)
+    );
+    setResults(filteredValue);
+  };
   return (
     <div>
-      <SearchInput results={profiles} />
+      <SearchInput
+        results={results}
+        onChange={handleChange}
+        renderItem={(item) => <p>{item.name}</p>}
+      />
     </div>
   );
 };
