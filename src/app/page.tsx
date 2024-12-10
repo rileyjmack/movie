@@ -1,11 +1,9 @@
-import Celebs from "./celebs";
-import { SearchInput } from "./searchbar";
+import App from "./components/App";
 
 export default async function Home() {
   return (
     <div>
-      <SearchInput />
-      <Celebs />
+      <App />
     </div>
   );
 }
