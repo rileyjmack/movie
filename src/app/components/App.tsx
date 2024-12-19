@@ -2,7 +2,7 @@
 import React from "react";
 // , { useState }
 // import { SearchInput } from "./searchbar";
-// import { Celebs } from "./celebs";
+import Celebs from "./celebs";
 
 // const profiles = [
 //   { id: "1", name: "Allie Grater" },
@@ -17,7 +17,9 @@ import React from "react";
 //   { id: "10", name: "Addie Minstra" },
 //   { id: "11", name: "Anne Ortha" },
 // ];
-const App = () => {
+export default function App({ actors }) {
+  // const actors = await fetchActors();
+
   // const [results, setResults] = useState<{ id: string; name: string }[]>();
   // const [selectedProfile, setSelectedProfile] = useState<{
   //   id: string;
@@ -43,9 +45,7 @@ const App = () => {
         onSelect={(item) => setSelectedProfile(item)}
         value={selectedProfile?.name}
       /> */}
-      {/* <Celebs /> */}
+      <Celebs actors={actors} />
     </div>
   );
-};
-
-export default App;
+}
