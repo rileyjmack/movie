@@ -10,21 +10,39 @@ const API_KEY = process.env.API_KEY;
  */
 
 async function seed() {
-  console.log("api", API_KEY);
   await models.db.sync({ force: true }); // clears db and matches models to tables
   console.log("db synced... (may take a minute)");
 
-  // get top 20 artists
+  // get top 20 actors
   const topActorsData = await fetch(
-    `https://api.themoviedb.org/3/person/popular?&api_key=${API_KEY}`
+    `https://api.themoviedb.org/3/person/popular?&api_key=9a809c69db7007a0753a955ed630ed32`
   );
   const topActors = await topActorsData.json();
   // const person = await data.json();
 
-  // map the top 20 artist to an array of just their names
-  const top20Actors = topActors.results.slice(0, 20);
-  for (const actor of top20Actors) {
-    await models.models.Actor.create(actor);
+  // map the top 20 actors to an array of just their names
+  let movieMemo = {};
+  let top20Actors = topActors.results.slice(0, 20);
+  for (let actor of top20Actors) {
+    let actorMovieData = await fetch(
+      `https://api.themoviedb.org/3/person/${actor.id}/movie_credits?&api_key=9a809c69db7007a0753a955ed630ed32`
+    );
+    let actorMovies = await actorMovieData.json();
+    let top20Films = actorMovies.cast.slice(0, 20);
+    for (let movie of top20Films) {
+      await models.models.MovieActor.create({
+        actorId: actor.id,
+        movieId: movie.id,
+      });
+      if (movieMemo[movie.id]) {
+        continue;
+      }
+      movieMemo[movie.id] = 1;
+      await models.models.Movie.create(movie);
+    }
+    if (actor.name == actor.original_name) {
+      await models.models.Actor.create(actor);
+    }
   }
 
   // map the top 5 albums to an array of just the album titles

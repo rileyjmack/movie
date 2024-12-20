@@ -64,9 +64,11 @@ export default async function Celebs({ actors }) {
     <div>
       <h1>actors</h1>
       <ul>
-        {actors.map((actor) => (
-          <li key={actor.id}>{actor.name}</li>
-        ))}
+        {actors
+          .filter((actor) => actor.name === actor.original_name)
+          .map((actor) => (
+            <li key={actor.id}>{actor.name}</li>
+          ))}
       </ul>
     </div>
   );

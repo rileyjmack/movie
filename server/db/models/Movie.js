@@ -1,23 +1,20 @@
 import Sequelize from "sequelize";
 import db from "../db.js";
 
-const Actor = db.define("actor", {
+const Movie = db.define("movie", {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
   },
-  name: {
+  title: {
     type: Sequelize.STRING,
   },
-  gender: {
-    type: Sequelize.INTEGER,
+  popularity: {
+    type: Sequelize.FLOAT,
   },
-  known_for_department: {
-    type: Sequelize.STRING,
-  },
-  original_name: {
+  original_language: {
     type: Sequelize.STRING,
   },
 });
 
-export default Actor;
+export default Movie;
