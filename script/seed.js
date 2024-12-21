@@ -15,7 +15,7 @@ async function seed() {
 
   // get top 20 actors
   const topActorsData = await fetch(
-    `https://api.themoviedb.org/3/person/popular?&api_key=9a809c69db7007a0753a955ed630ed32`
+    `https://api.themoviedb.org/3/person/popular?&api_key=${API_KEY}`
   );
   const topActors = await topActorsData.json();
   // const person = await data.json();
@@ -25,14 +25,14 @@ async function seed() {
   let top20Actors = topActors.results.slice(0, 20);
   for (let actor of top20Actors) {
     let actorMovieData = await fetch(
-      `https://api.themoviedb.org/3/person/${actor.id}/movie_credits?&api_key=9a809c69db7007a0753a955ed630ed32`
+      `https://api.themoviedb.org/3/person/${actor.id}/movie_credits?&api_key=${API_KEY}`
     );
     let actorMovies = await actorMovieData.json();
     let top20Films = actorMovies.cast.slice(0, 20);
     for (let movie of top20Films) {
-      await models.models.MovieActor.create({
-        actorId: actor.id,
-        movieId: movie.id,
+      await models.models.Movieactor.create({
+        actor_id: actor.id,
+        movie_id: movie.id,
       });
       if (movieMemo[movie.id]) {
         continue;

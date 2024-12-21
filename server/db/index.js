@@ -3,7 +3,7 @@ import db from "./db.js";
 
 import Actor from "./models/Actor.js";
 import Movie from "./models/Movie.js";
-import MovieActor from "./models/MovieActor.js";
+import Movieactor from "./models/MovieActor.js";
 
 //associations could go here!
 const models = {
@@ -11,7 +11,7 @@ const models = {
   models: {
     Actor,
     Movie,
-    MovieActor,
+    Movieactor,
   },
 };
 

@@ -22,12 +22,36 @@ async function fetchActors() {
   }
 }
 
+async function fetchMovies() {
+  try {
+    const res = await fetch("http://localhost:3000/api/movies");
+    const movies = res.json();
+    return movies;
+  } catch (error) {
+    console.error("Fetch error:", error);
+    return { error: "Data could not be loaded" }; // Fallback data
+  }
+}
+
+async function fetchMovieactors() {
+  try {
+    const res = await fetch("http://localhost:3000/api/movieactors");
+    const actors = res.json();
+    return actors;
+  } catch (error) {
+    console.error("Fetch error:", error);
+    return { error: "Data could not be loaded" }; // Fallback data
+  }
+}
+
 export default async function Home() {
   const actors = await fetchActors();
+  const movies = await fetchMovies();
+  const movieactors = await fetchMovieactors();
 
   return (
     <div>
-      <App actors={actors} />
+      <App actors={actors} movies={movies} movieactors={movieactors} />
     </div>
   );
 }

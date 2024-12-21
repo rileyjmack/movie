@@ -1,8 +1,7 @@
 import pool from "./db";
 import { NextApiRequest, NextApiResponse } from "next";
-import { Movie } from "../../src/app/defintions";
 
-export async function fetchMovies() {
+export async function fetchMovieActors() {
   try {
     // Artificially delay a response for demo purposes.
     // Don't do this in production :)
@@ -10,7 +9,12 @@ export async function fetchMovies() {
     // console.log('Fetching Actors data...');
     // await new Promise((resolve) => setTimeout(resolve, 3000));
 
-    const data = await pool.query<Movie>(`SELECT * FROM movies`);
+    const data = await pool.query(
+      // `SELECT actors.name,movies.title
+      //   FROM actors JOIN movieActors ON (actors.id=movieActors.actorId) JOIN movies ON (movies.id=movieActors.movieId)
+      //   `
+      "SELECT actor.name,movie.title FROM actor JOIN movieactor ON (actor.id=movieactor.actorId) JOIN movie ON (movie.id=movieactor.movieId"
+    );
 
     // console.log('Data fetch completed after 3 seconds.');
 
@@ -26,7 +30,9 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    const result = await pool.query<Movie>("SELECT * FROM movies");
+    const result = await pool.query(
+      "SELECT actors.name,movies.title FROM actors JOIN movieactors ON (actors.id=movieactors.actor_id) JOIN movies ON (movies.id=movieactors.movie_id)"
+    );
     res.status(200).json(result.rows);
   } catch (err) {
     console.error(err);

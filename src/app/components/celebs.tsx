@@ -41,7 +41,7 @@
 //   value,
 // }: Props<T>): JSX.Element =>
 
-export default async function Celebs({ actors }) {
+export default async function Celebs({ actors, movies, movieactors }) {
   // const [actors, setActors] = useState([]);
 
   // const fetchActors = () => {
@@ -60,6 +60,8 @@ export default async function Celebs({ actors }) {
   //   console.log(fetchActors());
   // }, []);
   console.log(actors);
+  console.log(movies);
+  console.log(movieactors);
   return (
     <div>
       <h1>actors</h1>
@@ -68,6 +70,13 @@ export default async function Celebs({ actors }) {
           .filter((actor) => actor.name === actor.original_name)
           .map((actor) => (
             <li key={actor.id}>{actor.name}</li>
+          ))}
+      </ul>
+      <ul>
+        {movies
+          .filter((movie) => movie.original_language === "en")
+          .map((movie) => (
+            <li key={movie.id}>{movie.title}</li>
           ))}
       </ul>
     </div>

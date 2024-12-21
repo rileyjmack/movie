@@ -1,13 +1,13 @@
 import Sequelize from "sequelize";
 import db from "../db.js";
 
-const MovieActor = db.define("movieActor", {
-  actorId: {
+const Movieactor = db.define("movieactor", {
+  actor_id: {
     type: Sequelize.INTEGER,
   },
-  movieId: {
+  movie_id: {
     type: Sequelize.INTEGER,
   },
 });
 
-export default MovieActor;
+export default Movieactor;

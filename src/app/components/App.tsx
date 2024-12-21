@@ -17,7 +17,7 @@ import Celebs from "./celebs";
 //   { id: "10", name: "Addie Minstra" },
 //   { id: "11", name: "Anne Ortha" },
 // ];
-export default function App({ actors }) {
+export default function App({ actors, movies, movieactors }) {
   // const actors = await fetchActors();
 
   // const [results, setResults] = useState<{ id: string; name: string }[]>();
@@ -45,7 +45,7 @@ export default function App({ actors }) {
         onSelect={(item) => setSelectedProfile(item)}
         value={selectedProfile?.name}
       /> */}
-      <Celebs actors={actors} />
+      <Celebs actors={actors} movies={movies} movieactors={movieactors} />
     </div>
   );
 }
