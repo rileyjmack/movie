@@ -1,7 +1,6 @@
 "use client";
-import React from "react";
-// , { useState }
-// import { SearchInput } from "./searchbar";
+import React, { useState } from "react";
+import { SearchInput } from "./searchbar";
 import Celebs from "./celebs";
 
 // const profiles = [
@@ -18,34 +17,34 @@ import Celebs from "./celebs";
 //   { id: "11", name: "Anne Ortha" },
 // ];
 export default function App({ actors, movies, movieactors }) {
-  // const actors = await fetchActors();
+  const [guesses, setGuesses] = useState(0);
+  const [results, setResults] = useState<{ id: number; name: string }[]>();
+  const [selectedProfile, setSelectedProfile] = useState<{
+    id: number;
+    name: string;
+  }>();
 
-  // const [results, setResults] = useState<{ id: string; name: string }[]>();
-  // const [selectedProfile, setSelectedProfile] = useState<{
-  //   id: string;
-  //   name: string;
-  // }>();
-
-  // type changeHandler = React.ChangeEventHandler<HTMLInputElement>;
-  // const handleChange: changeHandler = (e) => {
-  //   const { target } = e;
-  //   if (!target.value.trim()) return setResults([]);
-  //   const filteredValue = profiles.filter((profile) =>
-  //     profile.name.toLowerCase().startsWith(target.value)
-  //   );
-  //   setResults(filteredValue);
-  // };
-  // }
+  type changeHandler = React.ChangeEventHandler<HTMLInputElement>;
+  const handleChange: changeHandler = (e) => {
+    const { target } = e;
+    if (!target.value.trim()) return setResults([]);
+    const filteredValue = actors.filter((profile) =>
+      profile.name.toLowerCase().startsWith(target.value)
+    );
+    setResults(filteredValue);
+    setGuesses(guesses + 1);
+    console.log(guesses);
+  };
   return (
     <div>
-      {/* <SearchInput
+      <Celebs actors={actors} movies={movies} movieactors={movieactors} />
+      <SearchInput
         results={results}
         onChange={handleChange}
         renderItem={(item) => <p>{item.name}</p>}
         onSelect={(item) => setSelectedProfile(item)}
         value={selectedProfile?.name}
-      /> */}
-      <Celebs actors={actors} movies={movies} movieactors={movieactors} />
+      />
     </div>
   );
 }

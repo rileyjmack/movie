@@ -1,6 +1,6 @@
 // pages/index.js
-// import { useState, useEffect } from "react";
-// import { Actor } from "../defintions";
+import React, { useState } from "react";
+import { Actor } from "../defintions";
 // import { fetchActors } from "../../../pages/api/actors";
 // import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 
@@ -41,48 +41,58 @@
 //   value,
 // }: Props<T>): JSX.Element =>
 
-export default async function Celebs({ actors, movies, movieactors }) {
-  // const [actors, setActors] = useState([]);
-
-  // const fetchActors = () => {
-  //   return async () => {
-  //     try {
-  //       const data = await fetch("/api/actors");
-  //       setActors(data);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  // };
-
-  // useEffect(() => {
-  //   setActors(fetchActors());
-  //   console.log(fetchActors());
-  // }, []);
-  console.log(actors);
-  console.log(movies);
-  console.log(movieactors);
+const Celebs = ({ actors, movies, movieactors }) => {
   return (
     <div>
-      <h1>actors</h1>
-      <ul>
+      {/* <ul>
         {actors
           .filter((actor) => actor.name === actor.original_name)
           .map((actor) => (
             <li key={actor.id}>{actor.name}</li>
           ))}
-      </ul>
-      <ul>
+      </ul> */}
+      <div style={styles.container}>
+        {movieactors
+          .filter((actor) => actor.name == "Ana de Armas")
+          .slice(0, 5)
+          .reverse()
+          .map((actor) => (
+            <div key={actor.id} style={styles.box}>
+              {actor.title}
+            </div>
+          ))}
+      </div>
+      {/* <ul>
         {movies
           .filter((movie) => movie.original_language === "en")
           .map((movie) => (
             <li key={movie.id}>{movie.title}</li>
           ))}
-      </ul>
+      </ul> */}
     </div>
   );
-}
+};
 
+const styles = {
+  container: {
+    display: "flex", // Flexbox layout
+    justifyContent: "space-around", // Optional: Adjust spacing between boxes
+    alignItems: "center", // Align items vertically
+    gap: "10px", // Space between boxes
+  },
+  box: {
+    backgroundColor: "#0070f3",
+    color: "#fff",
+    padding: "20px",
+    textAlign: "center",
+    border: "1px solid #000",
+    borderRadius: "4px",
+    flex: "1", // Optional: Makes boxes grow/shrink equally
+    maxWidth: "150px", // Optional: Restrict the box width
+  },
+};
+
+export default Celebs;
 // import { useState, useEffect } from "react";
 
 // export default function Celebs() {
