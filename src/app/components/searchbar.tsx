@@ -21,6 +21,7 @@ export const SearchInput = <T extends object>({
   const [showResults, setShowResults] = useState(false);
   const [defaultValue, setDefaultValue] = useState("");
   const [feedback, setFeedback] = useState("");
+  const [guesses, setGuesses] = useState(1);
 
   const handleSelection = (selectedIndex: number) => {
     const selectedItem = results[selectedIndex];
@@ -30,6 +31,8 @@ export const SearchInput = <T extends object>({
     if (selectedItem.name == "Ana de Armas") {
       setFeedback("CORRECT");
     }
+    setGuesses(guesses + 1);
+    console.log(guesses);
   };
 
   const resetSearchComplete = useCallback(() => {

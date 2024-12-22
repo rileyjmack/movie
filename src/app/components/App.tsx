@@ -17,7 +17,6 @@ import Celebs from "./celebs";
 //   { id: "11", name: "Anne Ortha" },
 // ];
 export default function App({ actors, movies, movieactors }) {
-  const [guesses, setGuesses] = useState(0);
   const [results, setResults] = useState<{ id: number; name: string }[]>();
   const [selectedProfile, setSelectedProfile] = useState<{
     id: number;
@@ -32,8 +31,6 @@ export default function App({ actors, movies, movieactors }) {
       profile.name.toLowerCase().startsWith(target.value)
     );
     setResults(filteredValue);
-    setGuesses(guesses + 1);
-    console.log(guesses);
   };
   return (
     <div>
