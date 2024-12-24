@@ -7,6 +7,8 @@ interface Props<T> {
   renderItem(item: T): JSX.Element;
   onSelect?: (item: T) => void;
   value?: string;
+  setGuesses?: Function;
+  guesses?: number;
 }
 
 export const SearchInput = <T extends object>({
@@ -15,13 +17,14 @@ export const SearchInput = <T extends object>({
   renderItem,
   onSelect,
   value,
+  setGuesses,
+  guesses,
 }: Props<T>): JSX.Element => {
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const resultContainer = useRef<HTMLDivElement>(null);
   const [showResults, setShowResults] = useState(false);
   const [defaultValue, setDefaultValue] = useState("");
   const [feedback, setFeedback] = useState("");
-  const [guesses, setGuesses] = useState(1);
 
   const handleSelection = (selectedIndex: number) => {
     const selectedItem = results[selectedIndex];
@@ -32,7 +35,6 @@ export const SearchInput = <T extends object>({
       setFeedback("CORRECT");
     }
     setGuesses(guesses + 1);
-    console.log(guesses);
   };
 
   const resetSearchComplete = useCallback(() => {

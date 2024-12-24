@@ -22,6 +22,7 @@ export default function App({ actors, movies, movieactors }) {
     id: number;
     name: string;
   }>();
+  const [guesses, setGuesses] = useState(0);
 
   type changeHandler = React.ChangeEventHandler<HTMLInputElement>;
   const handleChange: changeHandler = (e) => {
@@ -34,13 +35,20 @@ export default function App({ actors, movies, movieactors }) {
   };
   return (
     <div>
-      <Celebs actors={actors} movies={movies} movieactors={movieactors} />
+      <Celebs
+        guesses={guesses}
+        actors={actors}
+        movies={movies}
+        movieactors={movieactors}
+      />
       <SearchInput
         results={results}
         onChange={handleChange}
         renderItem={(item) => <p>{item.name}</p>}
         onSelect={(item) => setSelectedProfile(item)}
         value={selectedProfile?.name}
+        setGuesses={setGuesses}
+        guesses={guesses}
       />
     </div>
   );

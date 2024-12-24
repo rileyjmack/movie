@@ -22,3 +22,7 @@ body {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.box {
+  filter: blur(10px);
+}

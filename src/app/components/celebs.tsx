@@ -41,7 +41,9 @@ import { Actor } from "../defintions";
 //   value,
 // }: Props<T>): JSX.Element =>
 
-const Celebs = ({ actors, movies, movieactors }) => {
+const Celebs = ({ guesses, actors, movies, movieactors }) => {
+  console.log(guesses);
+  let boxid = 1;
   return (
     <div>
       {/* <ul>
@@ -56,11 +58,25 @@ const Celebs = ({ actors, movies, movieactors }) => {
           .filter((actor) => actor.name == "Ana de Armas")
           .slice(0, 5)
           .reverse()
-          .map((actor) => (
-            <div key={actor.id} style={styles.box}>
-              {actor.title}
-            </div>
-          ))}
+          .map(function (actor) {
+            return boxid > guesses + 1 ? (
+              <div>
+                <div>MOVIE {boxid++}</div>
+
+                <div key={actor.id} className="box" style={styles.box}>
+                  {actor.title}
+                </div>
+              </div>
+            ) : (
+              <div>
+                <div>MOVIE {boxid++}</div>
+
+                <div key={actor.id} style={styles.box}>
+                  {actor.title}
+                </div>
+              </div>
+            );
+          })}
       </div>
       {/* <ul>
         {movies
