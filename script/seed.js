@@ -19,13 +19,13 @@ async function seed() {
   // );
   // const topActors = await topActorsData.json();
   const actors = [];
-  for (let i = 1; i < 1000; i++) {
+  for (let i = 1; i < 100000; i++) {
     const actorData = await fetch(
       `https://api.themoviedb.org/3/person/${i}?&api_key=9a809c69db7007a0753a955ed630ed32`
     );
     const person = await actorData.json();
 
-    if (person.known_for_department == "Acting" && person.popularity > 10) {
+    if (person.known_for_department == "Acting" && person.popularity > 25) {
       actors.push(person);
     }
   }

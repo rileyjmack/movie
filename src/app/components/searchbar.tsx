@@ -9,6 +9,8 @@ interface Props<T> {
   value?: string;
   setGuesses?: Function;
   guesses?: number;
+  setFeedback?: Function;
+  chosenActor?: string;
 }
 
 export const SearchInput = <T extends object>({
@@ -19,20 +21,21 @@ export const SearchInput = <T extends object>({
   value,
   setGuesses,
   guesses,
+  setFeedback,
+  chosenActor,
 }: Props<T>): JSX.Element => {
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const resultContainer = useRef<HTMLDivElement>(null);
   const [showResults, setShowResults] = useState(false);
   const [defaultValue, setDefaultValue] = useState("");
-  const [feedback, setFeedback] = useState("");
 
   const handleSelection = (selectedIndex: number) => {
     const selectedItem = results[selectedIndex];
     if (!selectedItem) return resetSearchComplete();
     onSelect(selectedItem);
     resetSearchComplete();
-    if (selectedItem.name == "Johnny Depp") {
-      setFeedback("CORRECT");
+    if (selectedItem.name == chosenActor.name) {
+      setFeedback(true);
     }
     setGuesses(guesses + 1);
   };
@@ -111,10 +114,8 @@ export const SearchInput = <T extends object>({
   // const handleKeyPress = (event: { key }) => {
   //   if (event.key === "Enter") return handleSearch();
   // };
-
   return (
     <div>
-      <div>{feedback ? <p>{feedback}</p> : <p></p>}</div>
       <div className="h-screen flex items-center justify-center">
         {/* <label htmlFor="inputId">searchIcon</label> */}
         <div

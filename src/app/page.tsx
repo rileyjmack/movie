@@ -44,25 +44,11 @@ async function fetchMovieactors() {
   }
 }
 
-const fetchImage = async () => {
-  try {
-    const res = await fetch(
-      "https://image.tmdb.org/t/p/original/wt2TRBmFmBn5M5MBcPTwovlREaB.jpg"
-    );
-    const imageBlob = await res.blob();
-    const imageObjectURL = URL.createObjectURL(imageBlob);
-    return imageObjectURL;
-  } catch (error) {
-    console.error("Fetch error:", error);
-    return { error: "Data could not be loaded" }; // Fallback data
-  }
-};
-
 export default async function Home() {
   const actors = await fetchActors();
   const movies = await fetchMovies();
   const movieactors = await fetchMovieactors();
-  const imageSource = await fetchImage();
+  const chosenActor = actors[Math.floor(Math.random() * actors.length)];
 
   return (
     <div>
@@ -70,7 +56,7 @@ export default async function Home() {
         actors={actors}
         movies={movies}
         movieactors={movieactors}
-        imageSource={imageSource}
+        chosenActor={chosenActor}
       />
     </div>
   );

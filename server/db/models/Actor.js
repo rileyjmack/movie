@@ -12,7 +12,7 @@ const Actor = db.define("actor", {
   gender: {
     type: Sequelize.INTEGER,
   },
-  known_for_department: {
+  profile_path: {
     type: Sequelize.STRING,
   },
 });

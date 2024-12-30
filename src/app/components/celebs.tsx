@@ -41,7 +41,7 @@ import { Actor } from "../defintions";
 //   value,
 // }: Props<T>): JSX.Element =>
 
-const Celebs = ({ guesses, actors, movies, movieactors, imageSource }) => {
+const Celebs = ({ guesses, actors, movies, movieactors, chosenActor }) => {
   let boxid = 1;
   return (
     <div>
@@ -54,13 +54,13 @@ const Celebs = ({ guesses, actors, movies, movieactors, imageSource }) => {
       </ul> */}
       <div style={styles.container}>
         {movieactors
-          .filter((actor) => actor.name == "Johnny Depp")
+          .filter((actor) => actor.name == chosenActor.name)
           .slice(0, 5)
           .reverse()
           .map(function (actor) {
             return boxid > guesses + 1 ? (
               <div>
-                <div>MOVIE {boxid++}</div>
+                <div> MOVIE {boxid++}</div>
                 <img
                   className="box"
                   style={styles.box}
