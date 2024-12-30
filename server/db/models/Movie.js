@@ -15,6 +15,9 @@ const Movie = db.define("movie", {
   original_language: {
     type: Sequelize.STRING,
   },
+  poster_path: {
+    type: Sequelize.STRING,
+  },
 });
 
 export default Movie;

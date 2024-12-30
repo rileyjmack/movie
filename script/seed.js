@@ -14,18 +14,30 @@ async function seed() {
   console.log("db synced... (may take a minute)");
 
   // get top 20 actors
-  const topActorsData = await fetch(
-    `https://api.themoviedb.org/3/person/popular?&api_key=${API_KEY}`
-  );
-  const topActors = await topActorsData.json();
-  // const person = await data.json();
+  // const topActorsData = await fetch(
+  //   `https://api.themoviedb.org/3/person/popular?&api_key=9a809c69db7007a0753a955ed630ed32`
+  // );
+  // const topActors = await topActorsData.json();
+  const actors = [];
+  for (let i = 1; i < 1000; i++) {
+    const actorData = await fetch(
+      `https://api.themoviedb.org/3/person/${i}?&api_key=9a809c69db7007a0753a955ed630ed32`
+    );
+    const person = await actorData.json();
+
+    if (person.known_for_department == "Acting" && person.popularity > 10) {
+      actors.push(person);
+    }
+  }
+  for (let person of actors) {
+    await models.models.Actor.create(person);
+  }
 
   // map the top 20 actors to an array of just their names
   let movieMemo = {};
-  let top20Actors = topActors.results.slice(0, 20);
-  for (let actor of top20Actors) {
+  for (let actor of actors) {
     let actorMovieData = await fetch(
-      `https://api.themoviedb.org/3/person/${actor.id}/movie_credits?&api_key=${API_KEY}`
+      `https://api.themoviedb.org/3/person/${actor.id}/movie_credits?&api_key=9a809c69db7007a0753a955ed630ed32`
     );
     let actorMovies = await actorMovieData.json();
     let top20Films = actorMovies.cast.slice(0, 20);
@@ -39,9 +51,6 @@ async function seed() {
       }
       movieMemo[movie.id] = 1;
       await models.models.Movie.create(movie);
-    }
-    if (actor.name == actor.original_name) {
-      await models.models.Actor.create(actor);
     }
   }
 

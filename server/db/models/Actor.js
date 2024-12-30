@@ -15,9 +15,6 @@ const Actor = db.define("actor", {
   known_for_department: {
     type: Sequelize.STRING,
   },
-  original_name: {
-    type: Sequelize.STRING,
-  },
 });
 
 export default Actor;

@@ -41,8 +41,7 @@ import { Actor } from "../defintions";
 //   value,
 // }: Props<T>): JSX.Element =>
 
-const Celebs = ({ guesses, actors, movies, movieactors }) => {
-  console.log(guesses);
+const Celebs = ({ guesses, actors, movies, movieactors, imageSource }) => {
   let boxid = 1;
   return (
     <div>
@@ -55,25 +54,31 @@ const Celebs = ({ guesses, actors, movies, movieactors }) => {
       </ul> */}
       <div style={styles.container}>
         {movieactors
-          .filter((actor) => actor.name == "Ana de Armas")
+          .filter((actor) => actor.name == "Johnny Depp")
           .slice(0, 5)
           .reverse()
           .map(function (actor) {
             return boxid > guesses + 1 ? (
               <div>
                 <div>MOVIE {boxid++}</div>
-
-                <div key={actor.id} className="box" style={styles.box}>
+                <img
+                  className="box"
+                  style={styles.box}
+                  src={`https://image.tmdb.org/t/p/w500/${actor.poster_path}`}
+                />
+                <p key={actor.id} className="box">
                   {actor.title}
-                </div>
+                </p>
               </div>
             ) : (
               <div>
                 <div>MOVIE {boxid++}</div>
-
-                <div key={actor.id} style={styles.box}>
-                  {actor.title}
-                </div>
+                <img
+                  className="box2"
+                  style={styles.box}
+                  src={`https://image.tmdb.org/t/p/w500/${actor.poster_path}`}
+                />
+                <p key={actor.id}>{actor.title}</p>
               </div>
             );
           })}
@@ -97,8 +102,8 @@ const styles = {
     gap: "10px", // Space between boxes
   },
   box: {
-    backgroundColor: "#0070f3",
-    color: "#fff",
+    // backgroundColor: "#0070f3",
+    // color: "#fff",
     padding: "20px",
     textAlign: "center",
     border: "1px solid #000",

@@ -16,7 +16,7 @@ import Celebs from "./celebs";
 //   { id: "10", name: "Addie Minstra" },
 //   { id: "11", name: "Anne Ortha" },
 // ];
-export default function App({ actors, movies, movieactors }) {
+export default function App({ actors, movies, movieactors, imageSource }) {
   const [results, setResults] = useState<{ id: number; name: string }[]>();
   const [selectedProfile, setSelectedProfile] = useState<{
     id: number;
@@ -40,6 +40,7 @@ export default function App({ actors, movies, movieactors }) {
         actors={actors}
         movies={movies}
         movieactors={movieactors}
+        imageSource={imageSource}
       />
       <SearchInput
         results={results}

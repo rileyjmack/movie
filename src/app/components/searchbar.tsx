@@ -31,7 +31,7 @@ export const SearchInput = <T extends object>({
     if (!selectedItem) return resetSearchComplete();
     onSelect(selectedItem);
     resetSearchComplete();
-    if (selectedItem.name == "Ana de Armas") {
+    if (selectedItem.name == "Johnny Depp") {
       setFeedback("CORRECT");
     }
     setGuesses(guesses + 1);
