@@ -87,33 +87,7 @@ export const SearchInput = <T extends object>({
   useEffect(() => {
     if (value) setDefaultValue(value);
   }, [value]);
-  // initiate the router from next/navigation
 
-  // const router = useRouter();
-
-  // // We need to grab the current search parameters and use it as default value for the search input
-
-  // const [inputValue, setValue] = useState(results);
-
-  // const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-  //   const inputValue = event.target.value;
-
-  //   setValue(inputValue);
-  // };
-
-  // // If the user clicks enter on the keyboard, the input value should be submitted for search
-
-  // // We are now routing the search results to another page but still on the same page
-
-  // const handleSearch = () => {
-  //   if (inputValue) return router.push(`/?q=${inputValue}`);
-
-  //   if (!inputValue) return router.push("/");
-  // };
-
-  // const handleKeyPress = (event: { key }) => {
-  //   if (event.key === "Enter") return handleSearch();
-  // };
   return (
     <div>
       <div className="h-screen flex items-center justify-center">

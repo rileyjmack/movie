@@ -24,7 +24,13 @@ body {
 @tailwind utilities;
 
 .box {
-  filter: blur(10px);
+  filter: blur(25px);
+}
+
+.title_text {
+  width: 150px;
+  text-align: center;
+  display: inline-block;
 }
 
 /* .box2 {

@@ -25,7 +25,11 @@ async function seed() {
     );
     const person = await actorData.json();
 
-    if (person.known_for_department == "Acting" && person.popularity > 25) {
+    if (
+      person.known_for_department == "Acting" &&
+      person.popularity > 25 &&
+      !person.adult
+    ) {
       actors.push(person);
     }
   }
@@ -40,8 +44,9 @@ async function seed() {
       `https://api.themoviedb.org/3/person/${actor.id}/movie_credits?&api_key=9a809c69db7007a0753a955ed630ed32`
     );
     let actorMovies = await actorMovieData.json();
-    let top20Films = actorMovies.cast.slice(0, 20);
-    for (let movie of top20Films) {
+    let topActorMovies = actorMovies.cast;
+    topActorMovies.slice(0, 5);
+    for (let movie of actorMovies.cast) {
       await models.models.Movieactor.create({
         actor_id: actor.id,
         movie_id: movie.id,

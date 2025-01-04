@@ -1,9 +1,9 @@
 import React from "react";
 
-const Winscreen = ({ chosenActor }) => {
+const Losescreen = ({ chosenActor }) => {
   return (
     <div style={styles.container}>
-      <div style={styles.container}>Correct, You Win! </div>
+      <div style={styles.container}>Sorry You Lose </div>
       <img
         // className="box2"
         style={styles.box}
@@ -49,4 +49,4 @@ const styles = {
   },
 };
 
-export default Winscreen;
+export default Losescreen;
