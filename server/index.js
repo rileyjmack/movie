@@ -1,7 +1,7 @@
 import db from "./db/db";
 const PORT = 3000;
 // import app from "./app";
-import seed from "../script/seed";
+import seed from "../src/app/script/seed";
 
 const init = async () => {
   try {

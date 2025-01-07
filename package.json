@@ -12,6 +12,7 @@
   "dependencies": {
     "@vercel/postgres": "^0.10.0",
     "axios": "^1.7.9",
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.4.7",
     "next": "15.0.3",
     "next-connect": "^1.0.0",

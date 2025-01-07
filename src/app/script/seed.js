@@ -1,6 +1,6 @@
 "use strict";
 
-import models from "../server/db/index.js";
+import models from "../../../server/db/index.js";
 
 const API_KEY = process.env.API_KEY;
 
