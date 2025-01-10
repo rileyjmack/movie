@@ -1,6 +1,5 @@
 // pages/index.js
-import React, { useState } from "react";
-import { Actor } from "../defintions";
+import React from "react";
 // import { fetchActors } from "../../../pages/api/actors";
 // import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 
@@ -41,7 +40,7 @@ import { Actor } from "../defintions";
 //   value,
 // }: Props<T>): JSX.Element =>
 
-const Celebs = ({ guesses, actors, movies, movieactors, chosenActor }) => {
+const Celebs = ({ guesses, movieactors, chosenActor }) => {
   let boxid = 1;
   return (
     <div>

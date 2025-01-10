@@ -5,7 +5,6 @@ import Celebs from "./celebs";
 import Winscreen from "./Winscreen";
 import Losescreen from "./Losescreen";
 import Header from "./Header";
-import myImage from "../../../public/movie-film-strip-blue-background_1017-33458.jpg";
 
 export default function App({ actors, movies, movieactors, chosenActor }) {
   const [results, setResults] = useState<{ id: number; name: string }[]>();
@@ -43,8 +42,6 @@ export default function App({ actors, movies, movieactors, chosenActor }) {
           <Celebs
             chosenActor={chosenActor}
             guesses={guesses}
-            actors={actors}
-            movies={movies}
             movieactors={movieactors}
           />
           {guesses > 4 ? (
