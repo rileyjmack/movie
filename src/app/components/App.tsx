@@ -1,4 +1,6 @@
 "use client";
+/* eslint-disable @typescript-eslint/no-unsafe-function-type */
+
 import React, { useState } from "react";
 import { SearchInput } from "./searchbar";
 import Celebs from "./celebs";
