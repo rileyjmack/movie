@@ -1,4 +1,6 @@
 "use client";
+/* eslint-disable @typescript-eslint/no-unsafe-function-type */
+
 // import { useRouter } from "next/navigation";
 import { useState, useRef, useEffect, useCallback } from "react";
 interface Props<T> {

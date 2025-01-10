@@ -9,7 +9,7 @@ const Losescreen = ({ chosenActor }) => {
         style={styles.box}
         src={`https://image.tmdb.org/t/p/w500/${chosenActor.profile_path}`}
       />
-      <div style={styles.container}>It's {chosenActor.name}</div>
+      <div style={styles.container}>It&apos;s {chosenActor.name}</div>
     </div>
   );
 };
