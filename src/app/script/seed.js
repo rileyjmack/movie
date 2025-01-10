@@ -1,8 +1,9 @@
 "use strict";
+"eslint-disable-next-line @typescript-eslint/no-explicit-any";
 
 import models from "../../../server/db/index.js";
 
-const API_KEY = process.env.API_KEY;
+// const API_KEY = process.env.API_KEY;
 
 /**
  * seed - this function clears the database, updates tables to

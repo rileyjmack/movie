@@ -30,7 +30,7 @@ importers:
         specifier: ^8.13.1
         version: 8.13.1
       react:
-        specifier: ^19.0.0-rc-66855b96-20241106
+        specifier: ^19.0.0
         version: 19.0.0
       react-dom:
         specifier: 19.0.0-rc-66855b96-20241106
