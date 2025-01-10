@@ -1,4 +1,5 @@
-import { sql } from "@vercel/postgres";
+import { db, sql } from "@vercel/postgres";
+const client = await db.connect();
 
 export async function fetchActors() {
   try {
@@ -8,7 +9,7 @@ export async function fetchActors() {
     // console.log('Fetching revenue data...');
     // await new Promise((resolve) => setTimeout(resolve, 3000));
 
-    const data = await sql`SELECT * FROM actors`;
+    const data = await client.sql`SELECT * FROM actors`;
 
     // console.log('Data fetch completed after 3 seconds.');
 
@@ -27,7 +28,7 @@ export async function fetchMovies() {
     // console.log('Fetching revenue data...');
     // await new Promise((resolve) => setTimeout(resolve, 3000));
 
-    const data = await sql`SELECT * FROM movies`;
+    const data = await client.sql`SELECT * FROM movies`;
 
     // console.log('Data fetch completed after 3 seconds.');
 
@@ -46,7 +47,7 @@ export async function fetchMovieActors() {
     // console.log('Fetching revenue data...');
     // await new Promise((resolve) => setTimeout(resolve, 3000));
 
-    const data = await sql`
+    const data = await client.sql`
      SELECT actors.name,actors.profile_path,movies.title,movies.popularity,movies.poster_path FROM actors JOIN movie_actors ON (actors.id=movie_actors.actor_id) JOIN movies ON (movies.id=movie_actors.movie_id) ORDER BY movies.popularity DESC
   `;
 

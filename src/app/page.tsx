@@ -34,7 +34,7 @@ import { fetchActors, fetchMovies, fetchMovieActors } from "./lib/data";
 //   }
 // }
 
-// async function fetchMovieactors() {
+// async function fetchMovieActors() {
 //   try {
 //     const res = await fetch("http://localhost:3000/api/movieactors");
 //     const actors = res.json();
@@ -48,7 +48,7 @@ import { fetchActors, fetchMovies, fetchMovieActors } from "./lib/data";
 export default async function Home() {
   const actors = await fetchActors();
   const movies = await fetchMovies();
-  const movieactors = await fetchMovieactors();
+  const movieactors = await fetchMovieActors();
   const chosenActor = actors[Math.floor(Math.random() * actors.length)];
 
   return (
