@@ -104,7 +104,7 @@ console.log("hi");
 // we export the seed function for testing purposes (see `./seed.spec.js`)
 export default seed;
 
-import { db } from "@vercel/postgres";
+// import { db } from "@vercel/postgres";
 
 // const client = await db.connect();
 
