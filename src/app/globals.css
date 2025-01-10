@@ -25,6 +25,12 @@ body {
 
 .box {
   filter: blur(25px);
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #000;
+  border-radius: 4px;
+  flex: 1; /* Optional: Makes boxes grow/shrink equally */
+  max-width: 150px;
 }
 
 .title_text {
@@ -36,3 +42,22 @@ body {
 /* .box2 {
   background-image: url("https://image.tmdb.org/t/p/original/wt2TRBmFmBn5M5MBcPTwovlREaB.jpg");
 } */
+
+.container {
+  display: flex; /* Flexbox layout */
+  justify-content: space-around; /* Optional: Adjust spacing between boxes */
+  align-items: center; /* Align items vertically */
+  gap: 10px; /* Space between boxes */
+}
+
+/* Box styles */
+.box2 {
+  /* background-color: #0070f3; */
+  /* color: #fff; */
+  /* padding: 20px; */
+  text-align: center;
+  border: 1px solid #000;
+  border-radius: 4px;
+  flex: 1; /* Optional: Makes boxes grow/shrink equally */
+  max-width: 150px; /* Optional: Restrict the box width */
+}

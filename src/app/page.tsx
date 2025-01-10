@@ -1,5 +1,5 @@
 import App from "./components/App";
-import { fetchActors, fetchMovies, fetchMovieActors } from "./lib/data";
+import { fetchActors, fetchMovieActors } from "./lib/data";
 
 // export async function getServerSideProps(context) {
 //   const { params, query, req, res } = context;
@@ -47,7 +47,6 @@ import { fetchActors, fetchMovies, fetchMovieActors } from "./lib/data";
 
 export default async function Home() {
   const actors = await fetchActors();
-  const movies = await fetchMovies();
   const movieactors = await fetchMovieActors();
   const chosenActor = actors[Math.floor(Math.random() * actors.length)];
 
@@ -55,7 +54,6 @@ export default async function Home() {
     <div>
       <App
         actors={actors}
-        movies={movies}
         movieactors={movieactors}
         chosenActor={chosenActor}
       />

@@ -3,16 +3,17 @@
 
 // import { useRouter } from "next/navigation";
 import { useState, useRef, useEffect, useCallback } from "react";
+import { Actor, SelectedProfile } from "../defintions";
 interface Props<T> {
   results?: T[];
-  onChange?: React.ChangeEventHandler;
+  onChange: React.ChangeEventHandler;
   renderItem(item: T): JSX.Element;
-  onSelect?: (item: T) => void;
+  onSelect: (item: SelectedProfile) => void;
   value?: string;
   setGuesses?: Function;
-  guesses?: number;
+  guesses: number;
   setFeedback?: Function;
-  chosenActor?: string;
+  chosenActor: Actor;
 }
 
 export const SearchInput = <T extends object>({
@@ -32,14 +33,16 @@ export const SearchInput = <T extends object>({
   const [defaultValue, setDefaultValue] = useState("");
 
   const handleSelection = (selectedIndex: number) => {
-    const selectedItem = results[selectedIndex];
+    const selectedItem: SelectedProfile = results[
+      selectedIndex
+    ] as SelectedProfile;
     if (!selectedItem) return resetSearchComplete();
     onSelect(selectedItem);
     resetSearchComplete();
     if (selectedItem.name == chosenActor.name) {
-      setFeedback(true);
+      setFeedback!(true);
     }
-    setGuesses(guesses + 1);
+    setGuesses!(guesses + 1);
   };
 
   const resetSearchComplete = useCallback(() => {

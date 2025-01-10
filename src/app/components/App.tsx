@@ -7,7 +7,7 @@ import Winscreen from "./Winscreen";
 import Losescreen from "./Losescreen";
 import Header from "./Header";
 
-export default function App({ actors, movies, movieactors, chosenActor }) {
+export default function App({ actors, movieactors, chosenActor }) {
   const [results, setResults] = useState<{ id: number; name: string }[]>();
   const [selectedProfile, setSelectedProfile] = useState<{
     id: number;

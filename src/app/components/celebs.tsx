@@ -60,7 +60,7 @@ const Celebs = ({ guesses, movieactors, chosenActor }) => {
             return boxid > guesses + 1 ? (
               <div>
                 <div> MOVIE {boxid++}</div>
-                <div style={styles.box}>
+                <div className="container">
                   <img
                     className="box"
                     src={`https://image.tmdb.org/t/p/w500/${actor.poster_path}`}
@@ -72,7 +72,6 @@ const Celebs = ({ guesses, movieactors, chosenActor }) => {
                 <div>MOVIE {boxid++}</div>
                 <img
                   className="box2"
-                  style={styles.box}
                   src={`https://image.tmdb.org/t/p/w500/${actor.poster_path}`}
                 />
                 <p className="title_text" key={actor.id}>

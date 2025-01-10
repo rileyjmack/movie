@@ -11,3 +11,8 @@ export type Movie = {
   popularity: number;
   original_language: string;
 };
+
+export type SelectedProfile = {
+  id: number;
+  name: string;
+};
