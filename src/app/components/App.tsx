@@ -1,5 +1,4 @@
 "use client";
-/* eslint-disable @typescript-eslint/no-unsafe-function-type */
 
 import React, { useState } from "react";
 import { SearchInput } from "./searchbar";
@@ -33,8 +32,6 @@ export default function App({ actors, movies, movieactors, chosenActor }) {
           <Celebs
             chosenActor={chosenActor}
             guesses={4}
-            actors={actors}
-            movies={movies}
             movieactors={movieactors}
           />
           <Winscreen chosenActor={chosenActor} />
