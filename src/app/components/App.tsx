@@ -1,13 +1,32 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SearchInput } from "./searchbar";
 import Celebs from "./celebs";
 import Winscreen from "./Winscreen";
 import Losescreen from "./Losescreen";
 import Header from "./Header";
+import { Actor } from "../defintions";
 
-export default function App({ actors, movieactors, chosenActor }) {
+export default function App({ actors, movieactors }) {
+  const [chosenActor, setChosenActor] = useState<Actor>({
+    id: 1,
+    name: "Riley Mack",
+    gender: 1,
+    known_for_department: "Writing",
+    original_name: "Riley Mack",
+  });
+
+  useEffect(() => {
+    // Function to update the value
+    const updateValue = () => {
+      const randomActor = actors[Math.floor(Math.random() * actors.length)];
+      setChosenActor(randomActor);
+    };
+
+    // Call the function on component mount
+    updateValue();
+  }, []); // Empty dependency array ensures this runs only on mount
   const [results, setResults] = useState<{ id: number; name: string }[]>();
   const [selectedProfile, setSelectedProfile] = useState<{
     id: number;

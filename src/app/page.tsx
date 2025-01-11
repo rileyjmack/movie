@@ -48,15 +48,9 @@ import { fetchActors, fetchMovieActors } from "./lib/data";
 export default async function Home() {
   const actors = await fetchActors();
   const movieactors = await fetchMovieActors();
-  const chosenActor = actors[Math.floor(Math.random() * actors.length)];
-
   return (
     <div>
-      <App
-        actors={actors}
-        movieactors={movieactors}
-        chosenActor={chosenActor}
-      />
+      <App actors={actors} movieactors={movieactors} />
     </div>
   );
 }
