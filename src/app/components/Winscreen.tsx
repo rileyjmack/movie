@@ -1,14 +1,22 @@
 import React from "react";
+import PlayAgainButton from "./PlayAgainButton";
 
 const Winscreen = ({ chosenActor }) => {
+  const handlePlayAgain = () => {
+    // Reset the game state or perform other actions
+    window.location.reload();
+  };
   return (
-    <div className="container">
-      <div className="container">Correct, You Win! </div>
-      <img
-        className="box2"
-        src={`https://image.tmdb.org/t/p/w500/${chosenActor.profile_path}`}
-      />
-      <div className="container">It&apos;s {chosenActor.name}</div>
+    <div>
+      <div className="container">
+        <div className="container">Correct, You Win! </div>
+        <img
+          className="box2"
+          src={`https://image.tmdb.org/t/p/w500/${chosenActor.profile_path}`}
+        />
+        <div className="container">It&apos;s {chosenActor.name}</div>
+      </div>
+      <PlayAgainButton onClick={handlePlayAgain} />
     </div>
   );
 };

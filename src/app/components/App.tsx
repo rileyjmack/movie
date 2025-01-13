@@ -7,6 +7,8 @@ import Winscreen from "./Winscreen";
 import Losescreen from "./Losescreen";
 import Header from "./Header";
 import { Actor } from "../defintions";
+import Modal from "./Modal";
+import PlayAgainButton from "./PlayAgainButton";
 
 export default function App({ actors, movieactors }) {
   const [chosenActor, setChosenActor] = useState<Actor>({
@@ -16,6 +18,9 @@ export default function App({ actors, movieactors }) {
     known_for_department: "Writing",
     original_name: "Riley Mack",
   });
+  const [isModalOpen, setModalOpen] = useState(false);
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
 
   useEffect(() => {
     // Function to update the value
@@ -43,6 +48,7 @@ export default function App({ actors, movieactors }) {
     );
     setResults(filteredValue);
   };
+
   return (
     <div>
       <Header />
@@ -53,7 +59,9 @@ export default function App({ actors, movieactors }) {
             guesses={4}
             movieactors={movieactors}
           />
-          <Winscreen chosenActor={chosenActor} />
+          <Modal isOpen={isModalOpen} onClose={closeModal}>
+            <Winscreen chosenActor={chosenActor} />
+          </Modal>
         </div>
       ) : (
         <div>
@@ -62,21 +70,29 @@ export default function App({ actors, movieactors }) {
             guesses={guesses}
             movieactors={movieactors}
           />
-          {guesses > 4 ? (
-            <Losescreen chosenActor={chosenActor} />
-          ) : (
-            <SearchInput
-              results={results}
-              onChange={handleChange}
-              renderItem={(item) => <p>{item.name}</p>}
-              onSelect={(item) => setSelectedProfile(item)}
-              value={selectedProfile?.name}
-              setGuesses={setGuesses}
-              guesses={guesses}
-              setFeedback={setFeedback}
-              chosenActor={chosenActor}
-            />
-          )}
+          <div>
+            {guesses > 4 ? (
+              <div>
+                <Modal isOpen={isModalOpen} onClose={closeModal}>
+                  <Losescreen chosenActor={chosenActor} />
+                </Modal>
+                <PlayAgainButton onClick={window.location.reload} />
+              </div>
+            ) : (
+              <SearchInput
+                results={results}
+                onChange={handleChange}
+                renderItem={(item) => <p>{item.name}</p>}
+                onSelect={(item) => setSelectedProfile(item)}
+                value={selectedProfile?.name}
+                setGuesses={setGuesses}
+                guesses={guesses}
+                setFeedback={setFeedback}
+                chosenActor={chosenActor}
+                openModal={openModal}
+              />
+            )}
+          </div>
         </div>
       )}
     </div>
