@@ -14,7 +14,6 @@ interface Props<T> {
   guesses: number;
   setFeedback?: Function;
   chosenActor: Actor;
-  openModal: Function;
 }
 
 export const SearchInput = <T extends object>({
@@ -27,7 +26,6 @@ export const SearchInput = <T extends object>({
   guesses,
   setFeedback,
   chosenActor,
-  openModal,
 }: Props<T>): JSX.Element => {
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const resultContainer = useRef<HTMLDivElement>(null);
@@ -45,9 +43,6 @@ export const SearchInput = <T extends object>({
       setFeedback!(true);
     }
     setGuesses!(guesses + 1);
-    if (guesses > 2) {
-      openModal();
-    }
   };
 
   const resetSearchComplete = useCallback(() => {
@@ -100,7 +95,7 @@ export const SearchInput = <T extends object>({
 
   return (
     <div>
-      <div className="h-screen flex items-center justify-center">
+      <div className=" flex items-center justify-center">
         {/* <label htmlFor="inputId">searchIcon</label> */}
         <div
           tabIndex={1}

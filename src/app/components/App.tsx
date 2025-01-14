@@ -18,8 +18,7 @@ export default function App({ actors, movieactors }) {
     known_for_department: "Writing",
     original_name: "Riley Mack",
   });
-  const [isModalOpen, setModalOpen] = useState(false);
-  const openModal = () => setModalOpen(true);
+  const [isModalOpen, setModalOpen] = useState(true);
   const closeModal = () => setModalOpen(false);
 
   useEffect(() => {
@@ -62,6 +61,7 @@ export default function App({ actors, movieactors }) {
           <Modal isOpen={isModalOpen} onClose={closeModal}>
             <Winscreen chosenActor={chosenActor} />
           </Modal>
+          <PlayAgainButton onClick={window.location.reload} />
         </div>
       ) : (
         <div>
@@ -89,7 +89,6 @@ export default function App({ actors, movieactors }) {
                 guesses={guesses}
                 setFeedback={setFeedback}
                 chosenActor={chosenActor}
-                openModal={openModal}
               />
             )}
           </div>

@@ -11,19 +11,10 @@ const PlayAgainButton: React.FC<PlayAgainButtonProps> = ({
 }) => {
   return (
     <button
+      className="button"
       onClick={onClick}
-      style={{
-        padding: "10px 20px",
-        fontSize: "16px",
-        borderRadius: "5px",
-        border: "none",
-        backgroundColor: "#4CAF50",
-        color: "white",
-        cursor: "pointer",
-        transition: "background-color 0.3s ease",
-      }}
-      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#45a049")}
-      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#4CAF50")}
+      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#1E44E5")}
+      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#1E88E5")}
     >
       {label}
     </button>

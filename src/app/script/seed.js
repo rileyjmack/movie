@@ -20,7 +20,7 @@ async function seed() {
   // );
   // const topActors = await topActorsData.json();
   const actors = [];
-  for (let i = 1; i < 1000; i++) {
+  for (let i = 1; i < 100000; i++) {
     const actorData = await fetch(
       `https://api.themoviedb.org/3/person/${i}?&api_key=9a809c69db7007a0753a955ed630ed32`
     );
@@ -28,7 +28,7 @@ async function seed() {
 
     if (
       person.known_for_department == "Acting" &&
-      person.popularity > 35 &&
+      person.popularity > 40 &&
       !person.adult
     ) {
       actors.push(person);
@@ -47,9 +47,9 @@ async function seed() {
     let actorMovies = await actorMovieData.json();
     let topActorMovies = actorMovies.cast;
     let actorMoviesList = topActorMovies
-      .filter((x) => x.popularity > 25)
-      .sort((a, b) => a.popularity - b.popularity)
-      .slice(0, 5);
+      .sort((a, b) => b.popularity - a.popularity)
+      .slice(0, 5)
+      .reverse();
 
     for (let movie of actorMoviesList) {
       await models.models.Movieactor.create({
