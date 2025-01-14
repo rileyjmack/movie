@@ -21,6 +21,11 @@ export default function App({ actors, movieactors }) {
   const [isModalOpen, setModalOpen] = useState(true);
   const closeModal = () => setModalOpen(false);
 
+  const handlePlayAgain = () => {
+    // Reset the game state or perform other actions
+    window.location.reload();
+  };
+
   useEffect(() => {
     // Function to update the value
     const updateValue = () => {
@@ -58,10 +63,12 @@ export default function App({ actors, movieactors }) {
             guesses={4}
             movieactors={movieactors}
           />
-          <Modal isOpen={isModalOpen} onClose={closeModal}>
-            <Winscreen chosenActor={chosenActor} />
-          </Modal>
-          <PlayAgainButton onClick={window.location.reload} />
+          <div className="button-container">
+            <Modal isOpen={isModalOpen} onClose={closeModal}>
+              <Winscreen chosenActor={chosenActor} />
+            </Modal>
+            <PlayAgainButton size={2} onClick={handlePlayAgain} />
+          </div>
         </div>
       ) : (
         <div>
@@ -72,11 +79,11 @@ export default function App({ actors, movieactors }) {
           />
           <div>
             {guesses > 4 ? (
-              <div>
+              <div className="button-container">
                 <Modal isOpen={isModalOpen} onClose={closeModal}>
                   <Losescreen chosenActor={chosenActor} />
                 </Modal>
-                <PlayAgainButton onClick={window.location.reload} />
+                <PlayAgainButton size={2} onClick={handlePlayAgain} />
               </div>
             ) : (
               <SearchInput

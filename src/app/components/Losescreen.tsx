@@ -17,7 +17,7 @@ const Losescreen = ({ chosenActor }) => {
         />
         <div className="container">It&apos;s {chosenActor.name}</div>
       </div>
-      <PlayAgainButton onClick={handlePlayAgain} />
+      <PlayAgainButton size={1} onClick={handlePlayAgain} />
     </div>
   );
 };
