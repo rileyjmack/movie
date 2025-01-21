@@ -8,7 +8,7 @@ const Losescreen = ({ chosenActor }) => {
   };
 
   return (
-    <div>
+    <div className="button-container">
       <div className="container">
         <div className="container">Sorry You Lose </div>
         <img
@@ -17,7 +17,9 @@ const Losescreen = ({ chosenActor }) => {
         />
         <div className="container">It&apos;s {chosenActor.name}</div>
       </div>
-      <PlayAgainButton size={1} onClick={handlePlayAgain} />
+      <div className="button-container">
+        <PlayAgainButton size={1} onClick={handlePlayAgain} />
+      </div>
     </div>
   );
 };

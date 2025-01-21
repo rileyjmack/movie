@@ -10,7 +10,7 @@ interface Props<T> {
   renderItem(item: T): JSX.Element;
   onSelect: (item: SelectedProfile) => void;
   value?: string;
-  setGuesses?: Function;
+  setGuesses: Function;
   guesses: number;
   setFeedback?: Function;
   chosenActor: Actor;
@@ -138,6 +138,9 @@ export const SearchInput = <T extends object>({
             </div>
           )}
         </div>
+        <button className="skip_button" onClick={() => setGuesses(guesses + 1)}>
+          SKIP
+        </button>
       </div>
     </div>
   );

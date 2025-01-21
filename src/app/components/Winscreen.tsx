@@ -16,7 +16,9 @@ const Winscreen = ({ chosenActor }) => {
         />
         <div className="container">It&apos;s {chosenActor.name}</div>
       </div>
-      <PlayAgainButton size={1} onClick={handlePlayAgain} />
+      <div className="button-container">
+        <PlayAgainButton size={1} onClick={handlePlayAgain} />
+      </div>
     </div>
   );
 };
