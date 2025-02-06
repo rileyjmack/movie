@@ -95,7 +95,7 @@ export const SearchInput = <T extends object>({
 
   return (
     <div>
-      <div className=" flex items-center justify-center">
+      <div className=" flex items-center justify-center p-20">
         {/* <label htmlFor="inputId">searchIcon</label> */}
         <div
           tabIndex={1}

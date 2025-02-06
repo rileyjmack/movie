@@ -49,7 +49,9 @@ body {
   align-items: center; /* Align items vertically */
   gap: 10px; /* Space between boxes */
 }
-
+.box2:hover {
+  transform: scale(1.2);
+}
 /* Box styles */
 .box2 {
   /* background-color: #0070f3; */
