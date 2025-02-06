@@ -118,7 +118,7 @@ export const SearchInput = <T extends object>({
           />
           {/* {Search REsults Container} */}
           {showResults && (
-            <div className="absolute mt-1 w-full p-2 bg-white shadow-lg rounded-b1 rounded-br max-h 10 overflow-y-auto">
+            <div className="absolute w-full bg-white border border-gray-300 rounded mt-1 max-h-40 overflow-y-auto shadow-lg">
               {results.map((item, index) => {
                 return (
                   <div
