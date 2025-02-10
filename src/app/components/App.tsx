@@ -48,7 +48,7 @@ export default function App({ actors, movieactors }) {
     const { target } = e;
     if (!target.value.trim()) return setResults([]);
     const filteredValue = actors.filter((profile) =>
-      profile.name.toLowerCase().startsWith(target.value)
+      profile.name.toLowerCase().startsWith(target.value.toLowerCase())
     );
     setResults(filteredValue);
   };
