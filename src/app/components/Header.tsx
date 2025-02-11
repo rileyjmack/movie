@@ -13,7 +13,7 @@ const Header: React.FC = () => {
         Your goal is to try to guess the actor in as few guesses as possible.
         You will be given one movie at a time and you must guess which actor is
         in all of the listed movies. Fewer guesses grants you more stars. If you
-        don&apost know you can always skip.
+        dont know you can always skip.
       </Modal>
       <header className="bg-blue-600 text-white shadow-md">
         <div className="container mx-auto flex justify-between items-center py-4 px-6">

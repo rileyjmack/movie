@@ -1,5 +1,7 @@
 // pages/index.js
-import React from "react";
+import React, { useState } from "react";
+import Modal from "./Modal";
+
 // import { fetchActors } from "../../../pages/api/actors";
 // import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 
@@ -42,6 +44,10 @@ import React from "react";
 
 const Celebs = ({ guesses, movieactors, chosenActor }) => {
   let boxid = 1;
+  const [isModalOpen, setModalOpen] = useState(false);
+  const closeModal = () => setModalOpen(false);
+  const openModal = () => setModalOpen(true);
+
   return (
     <div>
       {/* <ul>
@@ -69,8 +75,14 @@ const Celebs = ({ guesses, movieactors, chosenActor }) => {
               </div>
             ) : (
               <div>
+                <Modal isOpen={isModalOpen} onClose={closeModal}>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500/${actor.poster_path}`}
+                  />
+                </Modal>
                 <div>MOVIE {boxid++}</div>
                 <img
+                  onClick={openModal}
                   className="box2"
                   src={`https://image.tmdb.org/t/p/w500/${actor.poster_path}`}
                 />

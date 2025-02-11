@@ -46,11 +46,10 @@ body {
 .container {
   display: flex; /* Flexbox layout */
   justify-content: space-around; /* Optional: Adjust spacing between boxes */
-  align-items: center; /* Align items vertically */
   gap: 10px; /* Space between boxes */
 }
 .box2:hover {
-  transform: scale(1.2);
+  cursor: pointer;
 }
 /* Box styles */
 .box2 {
@@ -171,4 +170,8 @@ body {
   cursor: pointer; /* Pointer cursor on hover */
   transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
   cursor: default;
+}
+
+.han {
+  padding: 100px;
 }
