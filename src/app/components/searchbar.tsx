@@ -32,6 +32,18 @@ export const SearchInput = <T extends object>({
   const [showResults, setShowResults] = useState(false);
   const [defaultValue, setDefaultValue] = useState("");
 
+  const handleSearch = () => {
+    const query = defaultValue;
+    if (query) {
+      if (query == chosenActor.name) {
+        setFeedback!(true);
+      }
+      setGuesses!(guesses + 1);
+    } else {
+      alert("Please enter a search term");
+    }
+  };
+
   const handleSelection = (selectedIndex: number) => {
     const selectedItem: SelectedProfile = results[
       selectedIndex
@@ -104,6 +116,7 @@ export const SearchInput = <T extends object>({
           className="relative"
         >
           <input
+            id="searchInput"
             className="w-[600px] px-5 py-3 text-lg rounded-full border-2 border-gray-500 focus:border-gray-700 outline-none transition"
             // type="text"
             // id="inputId"
@@ -123,7 +136,9 @@ export const SearchInput = <T extends object>({
                 return (
                   <div
                     key={index}
-                    onMouseDown={() => handleSelection(index)}
+                    onMouseDown={() =>
+                      onSelect(results[index] as SelectedProfile)
+                    }
                     ref={index === focusedIndex ? resultContainer : null}
                     style={{
                       backgroundColor:
@@ -138,6 +153,13 @@ export const SearchInput = <T extends object>({
             </div>
           )}
         </div>
+        {showResults || defaultValue == "" ? (
+          <button className="submit_button">SUBMIT</button>
+        ) : (
+          <button className="skip_button" onClick={() => handleSearch()}>
+            SUBMIT
+          </button>
+        )}
         <button className="skip_button" onClick={() => setGuesses(guesses + 1)}>
           SKIP
         </button>
