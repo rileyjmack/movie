@@ -72,8 +72,8 @@ body {
 
 .starGood {
   position: relative;
-  width: 100px; /* Size of the star */
-  height: 100px;
+  width: 40px; /* Size of the star */
+  height: 40px;
   background: gold; /* Inner color of the star */
   clip-path: polygon(
     50% 0%,
@@ -91,9 +91,9 @@ body {
 
 .starMiss {
   position: relative;
-  width: 100px; /* Size of the star */
-  height: 100px;
-  background: gold; /* Inner color of the star */
+  width: 40px; /* Size of the star */
+  height: 40px;
+  background: black; /* Inner color of the star */
   clip-path: polygon(
     50% 0%,
     61% 35%,
@@ -108,12 +108,18 @@ body {
   );
 }
 
-/* .star:hover {
+.star_container {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  gap: 14px;
+}
+.starGood:hover {
   transform: scale(1.2);
-} */
+}
 .button {
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 20px;
   border-radius: 5px;
   border: none;
   background-color: #1e88e5;
@@ -121,6 +127,7 @@ body {
   cursor: pointer;
   transition: background-color 0.3s ease;
   height: 75px;
+  width: 150px;
 }
 
 .button2 {

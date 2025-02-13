@@ -1,5 +1,6 @@
 import React from "react";
 import PlayAgainButton from "./PlayAgainButton";
+import Stars from "./Stars";
 
 const Losescreen = ({ chosenActor }) => {
   const handlePlayAgain = () => {
@@ -12,13 +13,16 @@ const Losescreen = ({ chosenActor }) => {
       <div className="sub_container">
         <div className="title_text_large">Sorry You Lose </div>
         <div className="sub_container">
+          <div className="title_text">It&apos;s {chosenActor.name}</div>
+
           <img
             className="box2"
             src={`https://image.tmdb.org/t/p/w500/${chosenActor.profile_path}`}
           />
-          <div className="title_text">It&apos;s {chosenActor.name}</div>
         </div>
+        <p className="title_text">You Earned 0 Stars</p>
       </div>
+      <Stars guesses={5} />
       <div className="button-container">
         <PlayAgainButton size={1} onClick={handlePlayAgain} />
       </div>

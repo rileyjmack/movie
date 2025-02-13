@@ -9,6 +9,7 @@ import Header from "./Header";
 import { Actor } from "../defintions";
 import Modal from "./Modal";
 import PlayAgainButton from "./PlayAgainButton";
+import Stars from "./Stars";
 
 export default function App({ actors, movieactors }) {
   const [chosenActor, setChosenActor] = useState<Actor>({
@@ -65,7 +66,7 @@ export default function App({ actors, movieactors }) {
           />
           <div className="button-container">
             <Modal isOpen={isModalOpen} onClose={closeModal}>
-              <Winscreen chosenActor={chosenActor} />
+              <Winscreen chosenActor={chosenActor} guesses={guesses} />
             </Modal>
             <PlayAgainButton size={2} onClick={handlePlayAgain} />
           </div>
@@ -86,17 +87,20 @@ export default function App({ actors, movieactors }) {
                 <PlayAgainButton size={2} onClick={handlePlayAgain} />
               </div>
             ) : (
-              <SearchInput
-                results={results}
-                onChange={handleChange}
-                renderItem={(item) => <p>{item.name}</p>}
-                onSelect={(item) => setSelectedProfile(item)}
-                value={selectedProfile?.name}
-                setGuesses={setGuesses}
-                guesses={guesses}
-                setFeedback={setFeedback}
-                chosenActor={chosenActor}
-              />
+              <div>
+                <Stars guesses={guesses} />
+                <SearchInput
+                  results={results}
+                  onChange={handleChange}
+                  renderItem={(item) => <p>{item.name}</p>}
+                  onSelect={(item) => setSelectedProfile(item)}
+                  value={selectedProfile?.name}
+                  setGuesses={setGuesses}
+                  guesses={guesses}
+                  setFeedback={setFeedback}
+                  chosenActor={chosenActor}
+                />
+              </div>
             )}
           </div>
         </div>
