@@ -88,7 +88,7 @@ export default function App({ actors, movieactors }) {
               </div>
             ) : (
               <div>
-                <Stars guesses={guesses} />
+                <Stars guesses={guesses + 1} />
                 <SearchInput
                   results={results}
                   onChange={handleChange}

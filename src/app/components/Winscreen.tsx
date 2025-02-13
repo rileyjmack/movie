@@ -19,10 +19,10 @@ const Winscreen = ({ chosenActor, guesses }) => {
             src={`https://image.tmdb.org/t/p/w500/${chosenActor.profile_path}`}
           />
         </div>
-        {guesses == 4 ? (
+        {guesses == 5 ? (
           <p className="title_text">You Earned 1 Star!</p>
         ) : (
-          <p className="title_text">You Earned {5 - guesses} Stars!</p>
+          <p className="title_text">You Earned {6 - guesses} Stars!</p>
         )}
       </div>
       <Stars guesses={guesses} />
