@@ -4,7 +4,9 @@ import Modal from "./Modal";
 
 // import { fetchActors } from "../../../pages/api/actors";
 // import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
-
+{
+  /* <h1 class="font-sans font-light text-2xl lg:text-3xl md:text-2xl leading-9 tracking-tighter text-left pt-1 text-title">MoviePyramid.io</h1> */
+}
 // const profiles = [
 //   { id: "1", name: "Allie Grater" },
 //   { id: "2", name: "Aida Bugg" },
@@ -65,7 +67,7 @@ const Celebs = ({ guesses, movieactors, chosenActor }) => {
           .map(function (actor) {
             return boxid > guesses + 1 ? (
               <div>
-                <div> MOVIE {boxid++}</div>
+                <div className="title_text"> MOVIE {boxid++}</div>
                 <div className="container">
                   <img
                     className="box"
@@ -80,7 +82,7 @@ const Celebs = ({ guesses, movieactors, chosenActor }) => {
                     src={`https://image.tmdb.org/t/p/w500/${actor.poster_path}`}
                   />
                 </Modal>
-                <div>MOVIE {boxid++}</div>
+                <div className="title_text">MOVIE {boxid++}</div>
                 <img
                   onClick={openModal}
                   className="box2"
@@ -108,8 +110,8 @@ const styles = {
   container: {
     display: "flex", // Flexbox layout
     justifyContent: "space-around", // Optional: Adjust spacing between boxes
-    alignItems: "center", // Align items vertically
     gap: "10px", // Space between boxes
+    padding: "10px",
   },
   box: {
     // backgroundColor: "#0070f3",

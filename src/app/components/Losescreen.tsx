@@ -8,14 +8,16 @@ const Losescreen = ({ chosenActor }) => {
   };
 
   return (
-    <div className="button-container">
-      <div className="container">
-        <div className="container">Sorry You Lose </div>
-        <img
-          className="box2"
-          src={`https://image.tmdb.org/t/p/w500/${chosenActor.profile_path}`}
-        />
-        <div className="container">It&apos;s {chosenActor.name}</div>
+    <div className="container">
+      <div className="sub_container">
+        <div className="title_text_large">Sorry You Lose </div>
+        <div className="sub_container">
+          <img
+            className="box2"
+            src={`https://image.tmdb.org/t/p/w500/${chosenActor.profile_path}`}
+          />
+          <div className="title_text">It&apos;s {chosenActor.name}</div>
+        </div>
       </div>
       <div className="button-container">
         <PlayAgainButton size={1} onClick={handlePlayAgain} />
