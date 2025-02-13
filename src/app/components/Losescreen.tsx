@@ -22,7 +22,7 @@ const Losescreen = ({ chosenActor }) => {
         </div>
         <p className="title_text">You Earned 0 Stars</p>
       </div>
-      <Stars guesses={5} />
+      <Stars guesses={6} />
       <div className="button-container">
         <PlayAgainButton size={1} onClick={handlePlayAgain} />
       </div>
