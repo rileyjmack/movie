@@ -46,9 +46,21 @@ import Modal from "./Modal";
 
 const Celebs = ({ guesses, movieactors, chosenActor }) => {
   let boxid = 1;
-  const [isModalOpen, setModalOpen] = useState(false);
-  const closeModal = () => setModalOpen(false);
-  const openModal = () => setModalOpen(true);
+  const [modalStates, setModalStates] = useState({});
+
+  const closeModal = (movieId) => {
+    setModalStates((prev) => {
+      const newState = { ...prev, [movieId]: false };
+      return newState;
+    });
+  };
+
+  const openModal = (movieId) => {
+    setModalStates((prev) => {
+      const newState = { ...prev, [movieId]: true };
+      return newState;
+    });
+  };
 
   return (
     <div>
@@ -65,6 +77,10 @@ const Celebs = ({ guesses, movieactors, chosenActor }) => {
           .slice(0, 5)
           .reverse()
           .map(function (actor) {
+            const movieId = `${actor.name}-${actor.title}`
+              .replace(/\s+/g, "-")
+              .toLowerCase();
+
             return boxid > guesses + 1 ? (
               <div>
                 <div className="title_text"> MOVIE {boxid++}</div>
@@ -73,24 +89,28 @@ const Celebs = ({ guesses, movieactors, chosenActor }) => {
                     className="box"
                     src={`https://image.tmdb.org/t/p/w500/${actor.poster_path}`}
                   />
+                  <p className="box" key={actor.id}>
+                    {actor.title}
+                  </p>
                 </div>
               </div>
             ) : (
-              <div>
-                <Modal isOpen={isModalOpen} onClose={closeModal}>
+              <div key={movieId}>
+                <Modal
+                  isOpen={modalStates[movieId]}
+                  onClose={() => closeModal(movieId)}
+                >
                   <img
                     src={`https://image.tmdb.org/t/p/w500/${actor.poster_path}`}
                   />
                 </Modal>
                 <div className="title_text">MOVIE {boxid++}</div>
                 <img
-                  onClick={openModal}
+                  onClick={() => openModal(movieId)}
                   className="box2"
                   src={`https://image.tmdb.org/t/p/w500/${actor.poster_path}`}
                 />
-                <p className="title_text" key={actor.id}>
-                  {actor.title}
-                </p>
+                <p className="title_text">{actor.title}</p>
               </div>
             );
           })}

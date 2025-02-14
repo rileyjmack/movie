@@ -72,9 +72,9 @@ body {
 
 .starGood {
   position: relative;
-  width: 40px; /* Size of the star */
+  width: 40px;
   height: 40px;
-  background: gold; /* Inner color of the star */
+  background: gold;
   clip-path: polygon(
     50% 0%,
     61% 35%,
@@ -87,13 +87,43 @@ body {
     2% 35%,
     39% 35%
   );
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.starGood::before {
+  content: "";
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  background: #ffd700; /* Slightly brighter gold for the border */
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  z-index: -1;
+  top: -2px;
+  left: -2px;
+}
+
+.starGood:hover {
+  transform: scale(1.1);
+  background: #ffcd00; /* Slightly darker gold on hover */
 }
 
 .starMiss {
   position: relative;
-  width: 40px; /* Size of the star */
+  width: 40px;
   height: 40px;
-  background: black; /* Inner color of the star */
+  background: #2d2d2d;
   clip-path: polygon(
     50% 0%,
     61% 35%,
@@ -106,16 +136,44 @@ body {
     2% 35%,
     39% 35%
   );
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.starMiss::before {
+  content: "";
+  position: absolute;
+  width: 44px; /* Slightly larger than parent */
+  height: 44px;
+  background: #444;
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  z-index: -1;
+  top: -2px; /* Center the border */
+  left: -2px;
+}
+
+.starMiss:hover {
+  transform: scale(1.1);
+  background: #1a1a1a;
 }
 
 .star_container {
   display: flex;
-  justify-content: center; /* Centers horizontally */
-  align-items: center; /* Centers vertically */
+  justify-content: center;
+  align-items: center;
   gap: 14px;
-}
-.starGood:hover {
-  transform: scale(1.2);
+  padding: 10px;
 }
 .button {
   padding: 10px 20px;
