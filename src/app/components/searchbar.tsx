@@ -27,13 +27,21 @@ export const SearchInput = <T extends object>({
   setFeedback,
   chosenActor,
 }: Props<T>): JSX.Element => {
+  const [alreadyGuessed, setAlreadyGuessed] = useState<string[]>([]);
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const resultContainer = useRef<HTMLDivElement>(null);
   const [showResults, setShowResults] = useState(false);
   const [defaultValue, setDefaultValue] = useState("");
 
   const handleSearch = () => {
+    console.log(alreadyGuessed);
     const query = defaultValue;
+    if (alreadyGuessed.includes(query)) {
+      alert("You've already guessed this actor");
+      return;
+    }
+    setAlreadyGuessed([...alreadyGuessed, query]);
+
     if (query) {
       if (query == chosenActor.name) {
         setFeedback!(true);
@@ -54,7 +62,12 @@ export const SearchInput = <T extends object>({
     if (selectedItem.name == chosenActor.name) {
       setFeedback!(true);
     }
+    if (alreadyGuessed.includes(selectedItem.name)) {
+      alert("You've already guessed this actor");
+      return;
+    }
     setGuesses!(guesses + 1);
+    setAlreadyGuessed([...alreadyGuessed, selectedItem.name]);
   };
 
   const resetSearchComplete = useCallback(() => {
